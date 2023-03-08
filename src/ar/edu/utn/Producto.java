@@ -2,21 +2,17 @@ package ar.edu.utn;
 import java.time.LocalDate;
 public class Producto {
     private String nombre;
-    private String descripcion;
-    private LocalDate fechaAlta;
-    private Integer pesoKg;
-    private Double precio;
+    private String codigo;
+    private float precio;
 
     //constructores
     public Producto(){
 
     }
 
-    public Producto(String nombreProduc, String descripcionProduc, LocalDate fechaAltaProduc, Integer pesoKgProduc, Double precioProduc){
+    public Producto(String nombreProduc, String codigoProduc, float precioProduc){
         this.nombre = nombreProduc;
-        this.descripcion = descripcionProduc;
-        this.fechaAlta = fechaAltaProduc;
-        this.pesoKg = pesoKgProduc;
+        this.codigo = codigoProduc;
         this.precio = precioProduc;
     }
 
@@ -29,35 +25,29 @@ public class Producto {
         this.nombre = nombre;
     }
 
-    public String getDescripcion() {
-        return descripcion;
+    public String getCodigo() {
+        return codigo;
     }
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
     }
 
-    public LocalDate getFechaAlta() {
-        return fechaAlta;
-    }
-
-    public void setFechaAlta(LocalDate fechaAlta) {
-        this.fechaAlta = fechaAlta;
-    }
-
-    public Integer getPesoKg() {
-        return pesoKg;
-    }
-
-    public void setPesoKg(Integer pesoKg) {
-        this.pesoKg = pesoKg;
-    }
-
-    public Double getPrecio() {
+    public float getPrecio() {
         return precio;
     }
 
-    public void setPrecio(Double precio) {
+    public void setPrecio(float precio) {
         this.precio = precio;
+    }
+
+    //metodo
+    public float costoFinal(int cantCoutas){
+        if (cantCoutas > 6){
+            return (this.precio * 1.40f);
+        }
+        else{
+            return this.precio;
+        }
     }
 }
