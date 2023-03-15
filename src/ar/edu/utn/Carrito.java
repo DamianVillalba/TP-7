@@ -8,6 +8,7 @@ public class Carrito {
     private Producto producto2;
     private Producto producto3;
     private LocalDate fechaCompra;
+    private Descuento descuento;
 
     //constructor
     public Carrito(){
@@ -62,6 +63,14 @@ public class Carrito {
 
     public void setFechaCompra(LocalDate fechaCompra) {
         this.fechaCompra = fechaCompra;
+    }
+
+    public Descuento getDescuento() {
+        return descuento;
+    }
+
+    public void setDescuento(Descuento descuento) {
+        this.descuento = descuento;
     }
 
     //metodos
