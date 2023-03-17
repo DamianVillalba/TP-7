@@ -1,26 +1,24 @@
 package ar.edu.utn;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Carrito {
     private Persona persona;
-    private Producto producto1;
-    private Producto producto2;
-    private Producto producto3;
+    private List<Producto> productos;
     private LocalDate fechaCompra;
     private Descuento descuento;
 
     //constructor
     public Carrito(){
-
+        this.productos = new ArrayList<Producto>();
     }
 
-    public Carrito(Persona personaNueva, Producto productoNuevo1, Producto productoNuevo2, Producto productoNuevo3, LocalDate fechaCompraNueva){
+    public Carrito(Persona personaNueva, LocalDate fechaCompraNueva){
         this.persona = personaNueva;
-        this.producto1 = productoNuevo1;
-        this.producto2 = productoNuevo2;
-        this.producto3 = productoNuevo3;
         this.fechaCompra = fechaCompraNueva;
+        this.productos = new ArrayList<Producto>();
     }
 
     //get y set
@@ -31,30 +29,6 @@ public class Carrito {
 
     public void setPersona(Persona persona) {
         this.persona = persona;
-    }
-
-    public Producto getProducto1() {
-        return producto1;
-    }
-
-    public void setProducto1(Producto producto1) {
-        this.producto1 = producto1;
-    }
-
-    public Producto getProducto2() {
-        return producto2;
-    }
-
-    public void setProducto2(Producto producto2) {
-        this.producto2 = producto2;
-    }
-
-    public Producto getProducto3() {
-        return producto3;
-    }
-
-    public void setProducto3(Producto producto3) {
-        this.producto3 = producto3;
     }
 
     public LocalDate getFechaCompra() {
@@ -74,7 +48,27 @@ public class Carrito {
     }
 
     //metodos
+
+    public void agregarProducto(Producto productoNuevo){
+        this.productos.add(productoNuevo);
+    }
+
+    public void eliminarProducto(Producto productoEliminar){
+        this.productos.remove(productoEliminar);
+    }
+
+    public List<Producto> getProductos(){
+        //encapsulamos
+        List<Producto> listaProductos = new ArrayList<Producto>();
+        listaProductos.addAll(this.productos);
+        return listaProductos;
+    }
+
     public float costoFinal(){
-        return this.producto1.getPrecio() + this.producto2.getPrecio() + this.producto3.getPrecio();
+        float suma = 0;
+        for (Producto productoActual : productos){
+            suma+= productoActual.getPrecio();
+        }
+        return suma;
     }
 }
