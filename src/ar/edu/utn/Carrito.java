@@ -48,7 +48,7 @@ public class Carrito {
     }
 
     //metodos
-
+    //PUNTO 1
     public void agregarProducto(Producto productoNuevo){
         this.productos.add(productoNuevo);
     }
@@ -64,11 +64,33 @@ public class Carrito {
         return listaProductos;
     }
 
-    public float costoFinal(){
+    private float costoSinDescuentos() throws CarritoPrecio0Exception{
         float suma = 0;
         for (Producto productoActual : productos){
             suma+= productoActual.getPrecio();
         }
+        if (suma == 0){
+            throw new CarritoPrecio0Exception(suma);
+        }
         return suma;
+    }
+
+    //PUNTO 2B
+    public float costoFinal() throws CarritoPrecio0Exception, CarritoDescuentoNegativoException{
+        float resultado = costoFinalSegunDescuento(costoSinDescuentos(), this.descuento);
+        if (resultado < 0){
+            throw new CarritoDescuentoNegativoException(resultado);
+        }
+        return resultado;
+    }
+
+    private float costoFinalSegunDescuento(float resultado, Descuento descuentoCarrito){
+        if (descuentoCarrito.getClass() == DescuentoFijo.class){
+            return resultado - descuentoCarrito.getValorDesc();
+        }
+        else{
+            float porcentajeAFijo = (resultado * descuentoCarrito.getValorDesc()) / 100;
+            return resultado - porcentajeAFijo;
+        }
     }
 }

@@ -8,11 +8,23 @@ public class Main {
         Producto jabonPolvo = new Producto("Jabon en Polvo", "1", 40);
         Producto esponja = new Producto("Esponjas", "2", 10);
         Producto chocolate = new Producto("Chocolate", "3", 100);
+        Descuento descuentoEspecial = new DescuentoPorcentaje();
+        descuentoEspecial.setValorDesc(15);
         Carrito carro1 = new Carrito(jorge, LocalDate.now());
+        //Punto 1
         carro1.agregarProducto(jabonPolvo);
         carro1.agregarProducto(esponja);
         carro1.agregarProducto(chocolate);
-        System.out.println(carro1.costoFinal());
+        carro1.setDescuento(descuentoEspecial);
+        //Punto 2a
+        try{
+            System.out.println(carro1.costoFinal());
+        }catch (CarritoPrecio0Exception e){
+            System.out.println("ERROR: No se puede aplicar el descuento en un carrito de costo $0.");
+        }catch (CarritoDescuentoNegativoException e){
+            System.out.println("ERROR: El descuento es mayor al costo del carrito.");
+        }
+
         // PUNTO 1
         /*
         Descuento desc;
