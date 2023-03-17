@@ -16,7 +16,7 @@ public class Main {
         carro1.agregarProducto(esponja);
         carro1.agregarProducto(chocolate);
         carro1.setDescuento(descuentoEspecial);
-        //Punto 2a
+        //Punto 2
         try{
             System.out.println(carro1.costoFinal());
         }catch (CarritoPrecio0Exception e){
